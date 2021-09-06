@@ -48,7 +48,12 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/web.js",
+                "input": "./node_modules/p_module3/",
+                "output": "./assets/"
+              }
             ],
             "styles": [
               "src/styles.css"

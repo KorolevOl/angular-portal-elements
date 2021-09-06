@@ -1,8 +1,12 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
+import { RegisterCustomElement } from 'custom-element-register';
 
 @Component({
   selector: 'app-root',
   template: `
+    <div>1</div>
+    <root-web>web</root-web>
+    <div>2</div>
     <div class="d-flex">
       <app-sidebar></app-sidebar>
 
@@ -16,9 +20,17 @@ import { Component } from '@angular/core';
       
       <app-footer></app-footer>
     </div>
+    <root-web>web2</root-web>
   `,
   styles: []
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   title = 'portal';
+  constructor(private el: ElementRef) { }
+
+  ngAfterViewInit() {
+    RegisterCustomElement(this.el.nativeElement, 'root-web', '/assets/web.js');
+  }
+
 }
+
